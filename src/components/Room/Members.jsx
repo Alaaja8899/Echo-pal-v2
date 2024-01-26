@@ -41,9 +41,7 @@ function Members() {
   
 useEffect(()=>{
   GrappUser(user.avatar , user.id , user.name ,Room)
-  return ()=>{
-    initRtc()
-  }
+  initRtc()
 } , [])
   
   return (
