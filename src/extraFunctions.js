@@ -1,0 +1,40 @@
+export function generateRandomNineDigitNumber() {
+    // Generate a random number between 100,000,000 and 999,999,999
+    const randomNumber = Math.floor(Math.random() * 900000000) + 100000000;
+    return randomNumber;
+  }
+
+export    const Selected = (exist , check)=>{
+  const pathParts = check.split('/');
+  const imageName = pathParts[pathParts.length - 1];  
+
+  if (imageName === exist){
+    return true
+  }
+  else{
+    return false
+  }
+
+}
+
+
+export function getUsersArray(roomData) {
+  const usersArray = [];
+
+  for (const userId in roomData) {
+    if (roomData.hasOwnProperty(userId) && typeof roomData[userId] === 'object') {
+      usersArray.push(roomData[userId]);
+    }
+  }
+
+  return usersArray;
+}
+
+export const sliced =(arr , SliceNumber)=>{
+  let newArr =[]
+  for (let i=0 ; i<=SliceNumber; i++){
+      newArr.push(arr[i])
+  }
+
+  return newArr;
+}
