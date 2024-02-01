@@ -10,7 +10,7 @@ function RoomContextProvider({children}) {
     const {user} = useAuthContext()
     const data = JSON.parse(localStorage.getItem('room'))
     const [Room , setRoom] = useState(data ? data:null)
-    const [micState ,setMicState] = useState(true)
+    const [micState ,setMicState] = useState(false)
     const [activeSpeakers , setSpeakers] = useState(null)
     
     const [rtcClient, setClient] = useState(null);
@@ -26,9 +26,7 @@ function RoomContextProvider({children}) {
     await client.join(id, Room, null, user.id);
     
     audioTracks.LocalAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-    await client.publish(audioTracks.LocalAudioTrack);
-    audioTracks.LocalAudioTrack.setMuted(micState)
-    
+    await client.publish(audioTracks.LocalAudioTrack);    
     };
     window.addEventListener("beforeunload" ,()=>{
     deleteUser(Room , user.id)
