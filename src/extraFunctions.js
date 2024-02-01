@@ -38,3 +38,24 @@ export const sliced =(arr , SliceNumber)=>{
 
   return newArr;
 }
+
+
+
+export function requestMicrophoneAccess() {
+  // Check if the browser supports getUserMedia
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Request access to the microphone
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(function(stream) {
+        console.log('Access to microphone granted.');
+        // Do something with the microphone stream if needed
+      })
+      .catch(function(error) {
+        console.error('Error accessing microphone:', error);
+        // Handle error, possibly prompt the user to try again
+      });
+  } else {
+    console.error('getUserMedia is not supported in this browser.');
+    // Handle lack of support for getUserMedia
+  }
+}
