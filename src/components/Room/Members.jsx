@@ -22,7 +22,7 @@ import { Selected } from '../../extraFunctions';
 
 function Members() {
 
-    const {activeSpeakers ,   Room , initRtc} = useRoomContext()
+    const {activeSpeakers ,   Room , initRtc , LeaveChanel} = useRoomContext()
     const {user} = useAuthContext()
     const messagesRef = ref(database, `Rooms/${Room}`);
     const queryRef = query(messagesRef, orderByChild('timestamp'));
@@ -42,6 +42,7 @@ function Members() {
 useEffect(()=>{
   GrappUser(user.avatar , user.id , user.name ,Room)
   initRtc()
+  
 } , [])
   
   return (

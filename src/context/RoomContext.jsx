@@ -76,7 +76,7 @@ function RoomContextProvider({children}) {
 
 
     useEffect(()=>{
-        if (rtcClient){
+        if (rtcClient !==null){
           audioTracks.LocalAudioTrack.setMuted(micState)
         }
     } , [micState])
