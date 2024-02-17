@@ -17,9 +17,11 @@ import {useObject , useObjectVal} from "react-firebase-hooks/database"
 import { useAuthContext } from '../../context/AuthContext'
 import { useRoomContext } from '../../context/RoomContext';
 import RoomAudio from "./RoomAudio"
+import Me from '../Me';
 
 function Home() {
   const {logout , user} = useAuthContext()
+
   const Avatars = [fem1, fem2, fem3, fem4, fem5 , men1, men2, men3, men4, men5];
   const [avatar , setAvatar] = useState(null)
 
@@ -37,7 +39,7 @@ const snapshotToArray = (snapshot) => {
   return array;
 };
 
-    const {Room , setRoom} = useRoomContext()
+    const {Room , setRoom, author , toggleAuthor} = useRoomContext()
     const [roomName , setRoomName] = useState(null)
   
     const handleSubmit =()=>{
@@ -62,6 +64,7 @@ const snapshotToArray = (snapshot) => {
 
   return (
     <div className='Home'>
+      {author && <Me/>}
     <div className={`wrapper
     ${Room && 'hidden'}
     `}>
@@ -76,6 +79,12 @@ const snapshotToArray = (snapshot) => {
 
       </div>
     </header>
+
+    <button className=' bg-red-500 hover:bg-red-400 p-3 w-full rounded my-1'
+    onClick={()=> toggleAuthor()}
+    >
+          Who build this ?
+    </button>
 
     <button className=' bg-red-500 hover:bg-red-400 p-3 w-full rounded my-1'
     onClick={()=> logout()}
